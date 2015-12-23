@@ -18,22 +18,41 @@ package ua.com.juja.core;
 
 public class ArrayUtils {
     public static int[] lookFor(int[] array) {
-        int[] expected = new int[2];
-        int count = 0;
 
         for (int i = 0; i < array.length; i++) {
+
+            int[] expected = new int[0];
+            int count = 0;
+
             if (array[i] > 0) {
                 count++;
             }
-            if (count == 1){
-                expected[0] = i;
-            }
-            if ((array[i] <= 0) || (count == array.length)) {
-                expected[1] = count - 1;
+            if (count < 1)
+                return expected;
+
+            else {
+                if (count >= 1) {
+
+                    for (int j = 0; j < array.length; j++) {
+
+                        expected = new int[2];
+                        final int startPosition = 0;
+                        int finishPosition;
+
+                        if (array[j] > 0) {
+
+                            startPosition = j;
+
+                        }
+
+
+                    }
+
+
+                }
             }
 
         }
-        return expected;
 
     }
 }
