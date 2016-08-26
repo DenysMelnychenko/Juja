@@ -18,41 +18,59 @@ package ua.com.juja.core;
 
 public class ArrayUtils {
     public static int[] lookFor(int[] array) {
+        int[] empty = new int[0];
+        int[] current = new int[2];
+        int counterOfCurrentLength = 0;
+        int counterOfMaxLength = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
 
-        for (int i = 0; i < array.length; i++) {
 
-            int[] expected = new int[0];
-            int count = 0;
+        if (array.length == 0 || (array.length == 1 && (array[0] <= 0))) {
+            return empty;
+        } else if (array.length == 1 && (array[0] > 0)) {
+            current[0] = leftIndex;
+            current[1] = rightIndex;
+            return current;
 
-            if (array[i] > 0) {
-                count++;
-            }
-            if (count < 1)
-                return expected;
+        } else if (array.length > 1) {
 
-            else {
-                if (count >= 1) {
+            for (int i = 0; i < array.length; i++) {
 
-                    for (int j = 0; j < array.length; j++) {
+                if (array[i] > 0) {
+                    leftIndex = i - counterOfCurrentLength;
+                    rightIndex = i;
+                    counterOfCurrentLength++;
+                    if (counterOfCurrentLength > counterOfMaxLength) {
 
-                        expected = new int[2];
-                        final int startPosition = 0;
-                        int finishPosition;
+                        counterOfMaxLength = counterOfCurrentLength;
+                        current[0] = leftIndex;
+                        current[1] = rightIndex;
+                    }
 
-                        if (array[j] > 0) {
 
-                            startPosition = j;
+                } else {
+                    if (array[i] == 0) {
+                        counterOfCurrentLength = 0;
+                        leftIndex = leftIndex + 1;
+                    } else if (counterOfCurrentLength > counterOfMaxLength) {
 
-                        }
+                        counterOfMaxLength = counterOfCurrentLength;
+                        current[0] = leftIndex;
+                        current[1] = rightIndex;
+
+                        counterOfCurrentLength = 0;
 
 
                     }
 
-
                 }
-            }
 
+            }
         }
+        return current;
 
     }
 }
+
+

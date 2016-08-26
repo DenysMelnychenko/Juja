@@ -18,5 +18,8 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="Juja-Core" target="" />
+    </bytecodeTargetLevel>
   </component>
 </project>
